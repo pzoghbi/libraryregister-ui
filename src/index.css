@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.BookCard {
+    background: lightgray;
+    padding: 1em;
+    margin: 0.5em;
+    border-radius: 10px;
+}
+
+.BooksCreate {
+    margin: 10px;
+    padding: 10px;
+}
+
+.BooksCreate input, 
+.BooksCreate select, 
+.BooksCreate .btn-submit{
+    border-radius: 5px;
+    margin: 0px 10px;
+    padding: 10px;
+}
+
+.BooksCreate .btn-submit {
+    cursor: pointer;
+    background-color: pink;
+    display: inline-block;
+}
+
+.btn {
+    padding: 4px;
+    margin: 2px;
+    background-color:aquamarine;
+    display: inline-block;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px gray;
+    position: relative;
+    transition: all 0.1s linear;
+}
+
+.btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 2px 2px 2px gray;
+}
