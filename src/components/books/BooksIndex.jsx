@@ -18,8 +18,8 @@ export default function BooksIndex() {
     const getBooks = (qBookSearch) => {
         axios.get(booksApiRoute, { params: { bookSearchQuery: qBookSearch || null } })
             .then(response => {
-                setBooks(response.data);
-                console.log(response.data)
+                setBooks(response.data)
+                // console.log(response.data)
             })
             .catch(e => console.log(e));
     }
@@ -28,7 +28,8 @@ export default function BooksIndex() {
         navigate("create")
     }
 
-    const searchBooks = () => {
+    const searchBooks = (e) => {
+        e.preventDefault()
         let _query = searchRef.current.value
         if (!_query) return
         getBooks(_query)
@@ -38,8 +39,12 @@ export default function BooksIndex() {
         <div className="BooksIndex">
             <h3>Books</h3>
             <div onClick={toBookCreate} className='btn'>Dodaj knjigu</div>
-            <input type="text" placeholder="Traži knjige po autoru, naslovu..." name="qBookSearch" ref={searchRef} />
-            <div className="btn" onClick={searchBooks}>Traži</div>
+
+            <form className="BooksSearch" onSubmit={searchBooks}>
+                <input type="text" placeholder="Traži knjige po autoru, naslovu..." name="qBookSearch" ref={searchRef} />
+                <div className="btn" onClick={searchBooks}>Traži</div>
+            </form>
+            
             <div className="Books">
                 {books.map((b, id) => <BookCard key={id} {...b} />)}
             </div>
