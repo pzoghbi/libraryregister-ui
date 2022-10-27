@@ -36,10 +36,14 @@ const UserProfile = () => {
         e.preventDefault()
         let inputBookId = inputRef.current.value
         let response = await axios.post(`${leasingsApiRoute}`, { bookId : inputBookId, userId : user.id })
+        console.log("response", response)
 
+        // Todo Tidy up w/ BE
         if (response.status === 201) {
             setUser({...user, leasings: [...user.leasings, response.data]})
             inputRef.current.value = ""
+        } else if (response.data === 10004) {
+            alert("Korisnik je vec posudio maksimalan broj knjiga")
         }
     }
 
