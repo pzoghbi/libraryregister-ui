@@ -34,6 +34,10 @@ export default function BooksCreate() {
 
         let authorName = formData.get("authorName")
         let selectedOption = formRef.current.querySelector(`option[value="${authorName}"]`)
+        
+        // Todo Alert autor ne postoji
+        if (!selectedOption) return
+
         let authorId = parseInt(selectedOption.innerHTML)
         if (!authorId) return
 
