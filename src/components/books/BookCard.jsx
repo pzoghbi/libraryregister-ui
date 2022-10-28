@@ -5,7 +5,7 @@ export default function BookCard(props) {
     let navigate = useNavigate();
 
     const toBookProfile = () => {
-        navigate(`/library/books/${props.id}/read`, { state: props })
+        navigate(`/books/${props.id}/read`, { state: props })
     }
 
     return (

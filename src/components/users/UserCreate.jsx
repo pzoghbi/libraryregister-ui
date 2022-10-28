@@ -19,7 +19,7 @@ export default function UserCreate() {
             .then(response => {
                 if (response.status === 201) {
                     let user = response.data
-                    navigate(`/library/users/${user.id}/read`, user)
+                    navigate(`/users/${user.id}/read`, user)
                 }
                 console.log("response:", response)
             })

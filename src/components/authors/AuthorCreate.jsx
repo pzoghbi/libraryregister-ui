@@ -7,7 +7,7 @@ const AuthorCreate = () => {
     const navigate = useNavigate()
     let formRef = useRef(null)
     let authorsApiRoute = "https://localhost:7009/api/authors"
-    let booksCreate = "/library/books/create"
+    let booksCreate = "/books/create"
 
     const postAuthor = (e) => {
         e.preventDefault()

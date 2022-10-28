@@ -8,8 +8,8 @@ const UsersIndex = () => {
     let formRef = useRef(null)
     let [usersFromSearch, setusersFromSearch] = useState([])
 
-    let usersRoute = "/library/users"
-    let userCreateRoute = "/library/users/create"
+    let usersRoute = "/users"
+    let userCreateRoute = "/users/create"
     let usersApiRoute = "https://localhost:7009/api/users"
 
     const toUserCreate = () => { navigate(userCreateRoute) }
@@ -51,7 +51,6 @@ const UsersIndex = () => {
             <div className="SearchResults">
                 {
                     usersFromSearch?.map((usr, i) => {
-                        // Create user cards
                         return (<UserCard key={i} {...usr} />)
                     })
                 }

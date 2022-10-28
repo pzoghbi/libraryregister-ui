@@ -4,7 +4,7 @@ export default function UserCard(props) {
     let navigate = useNavigate()
 
     const goToUser = () => {
-        navigate(`/library/users/${props.id}/read`)
+        navigate(`/users/${props.id}/read`)
     }
 
     return (

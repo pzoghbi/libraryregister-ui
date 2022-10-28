@@ -13,7 +13,7 @@ export default function BooksCreate() {
 
     let authorsApiRoute = "https://localhost:7009/api/authors"
     let booksApiRoute = "https://localhost:7009/api/books"
-    let booksViewRoute = "/library/books"
+    let booksViewRoute = "/books"
 
     const getAuthors = () => {
         let _search = inputRef.current.value
@@ -34,7 +34,7 @@ export default function BooksCreate() {
 
         let authorName = formData.get("authorName")
         let selectedOption = formRef.current.querySelector(`option[value="${authorName}"]`)
-        
+
         // Todo Alert autor ne postoji
         if (!selectedOption) return
 

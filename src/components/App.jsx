@@ -1,22 +1,25 @@
 import React from 'react'
-import axios from 'axios';
-import Store from "../Store";
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router'
 
-export default function App() {    
-        
+export default function App() {
+
     let navigate = useNavigate();
 
-    const toUsers =     () => { navigate("library/users") }
-    const toBooks =     () => { navigate("library/books") }
-    const toAuthors =   () => { navigate("library/authors") }
-    const toLeasings =  () => { navigate("library/leasings") }
+    const activateLink = (e, link) => {
+        let _links = document.querySelectorAll(".Navigation > div")
+        _links.forEach(_link => _link.classList.remove("active"))
+        e.target.classList.add("active")
+        navigate(link)
+    }
 
     return (
-        <div>
-            <div onClick={toUsers}>Korisnici</div>
-            <div onClick={toAuthors}>Autori</div>
-            <div onClick={toBooks}>Knjige</div>
+        <div className="App">
+            <div className="Navigation">
+                <div onClick={(e) => activateLink(e, "users")}>Clanovi</div>
+                <div onClick={(e) => activateLink(e, "books")}>Knjige</div>
+                <div onClick={(e) => activateLink(e, "authors")}>Autori</div>
+            </div>
+            <Outlet />
         </div>
     )
 }
