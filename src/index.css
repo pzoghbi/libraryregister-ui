@@ -64,7 +64,7 @@
     font-size: .9rem;
 }
 
-.btn:hover {
+.btn:hover:not(.disabled) {
     transform: translate(-1px, -1px);
     box-shadow: 2px 2px 2px gray;
 }
@@ -210,4 +210,9 @@ tr.UserCard:hover {
 }
 
 .AuthorCard {
+}
+
+.disabled {
+    background: gainsboro;
+    color: gray;
 }

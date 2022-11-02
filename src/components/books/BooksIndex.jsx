@@ -9,10 +9,6 @@ export default function BooksIndex() {
     const navigate = useNavigate();
     const searchRef = useRef();
 
-    useEffect(() => {
-        getBooks();
-    }, [])
-
     let booksApiRoute = "https://localhost:7009/api/books"
 
     const getBooks = (bookQuery) => {

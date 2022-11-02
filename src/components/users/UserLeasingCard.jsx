@@ -9,9 +9,11 @@ const UserLeasingCard = (props) => {
 
     const returnBook = async (e) => {
         e.preventDefault()
-        let _userId = userIdInputRef.current.value;
-        let confirmedUserId = _userId && parseInt(_userId) === parseInt(leasing.userId)
+        let _bookId = userIdInputRef.current.value;
+        let confirmedUserId = _bookId && parseInt(_bookId) === parseInt(leasing.book.id)
+        
         if (!confirmedUserId) return
+        
         let response = await axios.get(`${leasingsApiRoute}/${leasing.id}/return`)
         setLeasing(response.data)
     }
@@ -39,9 +41,9 @@ const UserLeasingCard = (props) => {
                     <input 
                         className="ml-auto"
                         type="text" 
-                        name="userId" 
+                        name="bookId" 
                         ref={userIdInputRef} 
-                        placeholder="Potvrdi članski broj" 
+                        placeholder="Potvrdi broj knjige" 
                     />
                     <div className="btn" onClick={returnBook}>Vrati knjigu</div>
                 </form>

@@ -3,23 +3,23 @@ import React from 'react';
 const PagingNavigation = (props) => {
     return (
         <div className="d-flex justify-between w-100 mt-2">
-            { props.hasPrev && (
+            { 
                 <div 
-                    className="btn" 
-                    onClick={props.prevPage}
+                    className={`btn ${props.hasPrev ? "" : "disabled"}`} 
+                    onClick={props.hasPrev ? props.prevPage : null}
                 >
                     Prethodna strana
                 </div>
-            )}
+            }
 
-            { props.hasNext && (
+            { 
                 <div 
-                    className="btn ml-auto" 
-                    onClick={props.nextPage}
+                    className={`btn ml-auto ${props.hasNext ? "" : "disabled"}`} 
+                    onClick={props.hasNext ? props.nextPage : null}
                 >
                     Slijedeća strana
                 </div>
-            )}
+            }
         </div>
     );
 }
