@@ -175,7 +175,8 @@ input:focus {
     border-spacing: 0 1em;
 }
 
-tr.UserCard > td {
+tr.UserCard > td,
+thead th {
     padding: .25em;
     width: 25%;
     vertical-align: middle;
@@ -215,4 +216,8 @@ tr.UserCard:hover {
 .disabled {
     background: gainsboro;
     color: gray;
+}
+
+thead {
+    text-align: left;
 }

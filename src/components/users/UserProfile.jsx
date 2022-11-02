@@ -37,7 +37,11 @@ const UserProfile = () => {
         let inputBookId = inputRef.current.value
         if (!inputBookId) return
 
-        let response = await axios.post(`${leasingsApiRoute}`, { bookId : inputBookId, userId : user.id })
+        let response = await axios.post(`${leasingsApiRoute}`, 
+            { 
+                bookId : inputBookId, 
+                userId : user.id 
+            })
         console.log("response", response)
 
         // Todo Tidy up w/ BE

@@ -56,15 +56,24 @@ const UsersIndex = () => {
                 <div className="btn" onClick={toUserCreate}>Novi član</div>
             </form>
 
-            <table className="SearchResults">
-                <tbody>
-                {
-                    usersFromSearch?.map((usr, i) => {
-                        return (<UserCard key={i} {...usr} />)
-                    })
-                }
-                </tbody>
-            </table>
+            { usersFromSearch.length ? (
+                <table className="SearchResults">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Ime</th>
+                            <th>E-mail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        usersFromSearch?.map((usr, i) => {
+                            return (<UserCard key={i} {...usr} />)
+                        })
+                    }
+                    </tbody>
+                </table>
+            ) : null}
         </div>
     )
 }
