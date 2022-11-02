@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import UserCard from './UserCard'
 
 const UsersIndex = () => {
@@ -43,18 +43,28 @@ const UsersIndex = () => {
 
     return (
         <div className="UsersIndex">
+
             <form ref={formRef} onSubmit={findUsers}>
-                <input type="text" name="userQuery" placeholder='Trazi clana po broju ili imenu' />
+                <label htmlFor="userQuery">Pretraga: </label>
+                <input 
+                    type="text" 
+                    name="userQuery" 
+                    placeholder='Trazi člana po broju ili imenu' 
+                    required 
+                />
                 <div className="btn" onClick={findUsers}>Trazi</div>
+                <div className="btn" onClick={toUserCreate}>Novi član</div>
             </form>
-            <div className="btn" onClick={toUserCreate}>Novi clan</div>
-            <div className="SearchResults">
+
+            <table className="SearchResults">
+                <tbody>
                 {
                     usersFromSearch?.map((usr, i) => {
                         return (<UserCard key={i} {...usr} />)
                     })
                 }
-            </div>
+                </tbody>
+            </table>
         </div>
     )
 }

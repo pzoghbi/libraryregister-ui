@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react'
 import AuthorCard from './AuthorCard';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import PagingNavigation from '../PagingNavigation';
 
 export default function AuthorsIndex() {
     let [authors, setAuthors] = useState([])
-    let [page, setPage] = useState({ index: 1, count: 5})
+    let [page, setPage] = useState({ index: 1, count: 5 })
     let [pageData, setPageData] = useState({})
     const navigate = useNavigate();
 
@@ -16,13 +17,21 @@ export default function AuthorsIndex() {
     }, [page])
 
     const getAuthors = () => {
-        axios.get(authorsApiRoute, { params: { pageIndex : page.index, pageSize : page.count } })
+        axios.get(authorsApiRoute, 
+            { 
+                params: { 
+                    pageIndex : page.index, 
+                    pageSize : page.count 
+                } 
+            })
             .then(response => {
-                let _page = response.data;
-                setAuthors(_page.list);
+                let currentPage = response.data;
+                setAuthors(currentPage.list);
                 setPageData({ 
-                    hasPrev : _page.hasPreviousPage,
-                    hasNext : _page.hasNextPage
+                    hasPrev : currentPage.hasPreviousPage,
+                    hasNext : currentPage.hasNextPage,
+                    prevPage : () => setPage({ ...page, index : page.index-1 }),
+                    nextPage : () => setPage({ ...page, index : page.index+1 })
                 })                
             })
             .catch(e => console.log(e));
@@ -32,29 +41,30 @@ export default function AuthorsIndex() {
         navigate("create");
     }
 
-    return authors && (
+    return (
         <div className="AuthorsIndex">
-            <div onClick={toAuthorCreate} className='btn'>add new author</div>
+            <div>
+                <label htmlFor="resultsPerPage">Rezultata po stranici</label>
+                <select 
+                    className="ml-1 mr-1"
+                    name="resultsPerPage" 
+                    onChange={e => setPage({ ...page, count : e.target.value})}
+                >
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                </select>
 
-            <label htmlFor="resultsPerPage">Rezultata po stranici</label>
-            <select name="resultsPerPage" onChange={(e) => 
-                setPage( { ...page, count : parseInt(e.target.value) } )}>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-            </select>
+                <div onClick={toAuthorCreate} className='btn'>Dodaj autora</div>
+            </div>
 
-            { authors?.map((author, i) => <AuthorCard key={i} {...author} />) }
-
-            { pageData.hasPrev && 
-                (<div className="btn" onClick={() => setPage( { ...page, index: page.index-1 } )}>
-                    Prethodna strana
-                </div>) }
-
-            { pageData.hasNext && 
-                (<div className="btn" onClick={() => setPage( { ...page, index : page.index+1 } )}>
-                    Slijedeća strana
-                </div>) }
+            <div className="SearchResults">
+                { authors?.map((author, i) => 
+                    <AuthorCard key={i} {...author} />) }
+                <PagingNavigation {...pageData} />
+            </div>
+            
+            
         </div>
     )
 }

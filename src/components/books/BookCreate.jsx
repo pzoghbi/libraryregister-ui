@@ -3,7 +3,7 @@ import { useState, useRef } from "react"
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router";
 
-export default function BooksCreate() {
+export default function BookCreate() {
     const [authors, setAuthors] = useState([])
     let formRef = useRef()
     let inputRef = useRef()
@@ -55,28 +55,32 @@ export default function BooksCreate() {
     }
 
     return (
-        <form className="BooksCreate" ref={formRef} onSubmit={postBook}>
+        <form className="BookCreate" ref={formRef} onSubmit={postBook}>
             <h3>Unos knjige u sustav</h3>
-            <input type="text" placeholder="Title" name="title" />
-            <input type="text" placeholder="Genre" name="genre" />
+            <input type="text" placeholder="Naslov knjige" name="title" />
+            <input type="text" placeholder="Žanr" name="genre" />
 
             <input 
                 ref={inputRef} 
                 name="authorName" 
-                list="authorsList"  
+                list="authorsList"
+                placeholder="Autor"
                 defaultValue={selectedAuthor?.name ?? ""} 
                 onChange={getAuthors} 
             />
 
-            <datalist id="authorsList" onChange={(e) => { console.log(e.target.value) }}>
+            <datalist 
+                onChange={(e) => { console.log(e.target.value) }}
+                id="authorsList" 
+            >
                 { authors?.map((author, i) => 
                     { return (
-                        <option value={author.name} key={i}>{author.id}</option>) 
-                    }
+                        <option value={author.name} key={i}>{author.id}</option>
+                    )}
                 ) }
             </datalist>
 
-            <div onClick={postBook} className="btn-submit">Spremi knjigu</div>
+            <div onClick={postBook} className="btn">Spremi knjigu</div>
         </form>
     )
 }

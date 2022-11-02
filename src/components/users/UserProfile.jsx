@@ -35,6 +35,8 @@ const UserProfile = () => {
     const leaseBook = async (e) => {
         e.preventDefault()
         let inputBookId = inputRef.current.value
+        if (!inputBookId) return
+
         let response = await axios.post(`${leasingsApiRoute}`, { bookId : inputBookId, userId : user.id })
         console.log("response", response)
 
@@ -60,23 +62,32 @@ const UserProfile = () => {
 
     return (
         <div className='UserProfile'>
-            <h2>Clanski profil</h2>
-            <div>Ime: {user.name}</div>
-            <div>Clanski broj: {user.id}</div>
-            <div>Email adresa: {user.email}</div>
-            <div>Clanstvo do: {
+            <h1>{user.name}</h1>
+            <div>Članski broj: <b>{user.id}</b></div>
+            <div>Email adresa: <b>{user.email}</b></div>
+            <div>Članstvo do: {
                 membership ?
-                    (<span>{new Date(membership.validUntil).toDateString()}</span>) :
-                    (<span> Nema clanarinu <span onClick={createMembership}>[Izradi clanarinu]</span></span>)
+                    (<b>
+                        {new Date(membership.validUntil).toDateString()}
+                    </b>) :
+                    (<span> 
+                        Nema članarinu
+                        <div className="btn" onClick={createMembership}>
+                            Izradi članarinu
+                        </div>
+                    </span>)
             }
             </div>
+            
+            <form className="LeaseBookForm" onSubmit={leaseBook}>
+                <label className="ml-auto" htmlFor="bookId">Posudi knjigu: </label>
+                <input className="ml-1" type="text" name="bookId" placeholder="Unesi broj knjige" ref={inputRef} />
+                <div className="btn" onClick={leaseBook}>Posudi</div>
+            </form>
+
             <div className='UserLeasings'>
-                <form className="LeaseBook" onSubmit={leaseBook}>
-                    <label htmlFor="bookId">Posudi knjigu</label>
-                    <input type="text" name="bookId" placeholder="Unesi broj knjige" ref={inputRef} />
-                    <div className="btn" onClick={leaseBook}>Posudi</div>
-                </form>
-                { user.leasings?.map((leasing, i) => (<UserLeasingCard key={i} {...leasing} />)) }
+                { user.leasings?.map((leasing, i) => 
+                    (<UserLeasingCard key={i} {...leasing} />)) }
             </div>
         </div>
     );

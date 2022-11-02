@@ -27,9 +27,20 @@ const AuthorCreate = () => {
     }
 
     return (
-        <form className="AuthorCreate" ref={formRef} onSubmit={postAuthor}>
+        <form 
+            className="AuthorCreate" 
+            onSubmit={postAuthor}
+            ref={formRef} 
+        >
             <h2>Novi autor</h2>
-            <input type="text" name="name" onChange={setLettersOnly}/>
+            <input 
+                type="text" 
+                placeholder="Ime autora" 
+                name="name" 
+                onChange={setLettersOnly}
+                required
+            />
+
             <div className="btn" onClick={postAuthor}>Dodaj autora</div>
         </form>
     );

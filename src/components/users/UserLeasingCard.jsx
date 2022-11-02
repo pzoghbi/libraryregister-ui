@@ -17,23 +17,36 @@ const UserLeasingCard = (props) => {
     }
     
     return (
-        <div className="UserLeasingCard BookCard">
-            <h4>Naslov: {leasing.book.title}</h4>
-            <h5>ID knjige: {leasing.book.id}</h5>
-            <div>Autor: {leasing.book.author.name}</div>
-            <div>Žanr: {leasing.book.genre}</div>
-            <div>Posuđeno: {new Date(leasing.leaseDate).toDateString()}</div>
-            <div>Vraćeno: 
-                {
-                    leasing.returnDate ? 
-                    new Date(leasing.returnDate).toDateString() : 
-                    (<form onSubmit={returnBook}>
-                        <div>Knjiga nije vraćena</div>
-                        <input type="text" placeholder="Potvrdi članski broj" name="userId" ref={userIdInputRef} />
-                        <div className="btn" onClick={returnBook}>Vrati knjigu</div>
-                    </form>)
-                }
+        <div className="UserLeasingCard">
+            <div className="mb-1">
+                <h3>{leasing.book.title}</h3>
+                <i>{leasing.book.author.name}</i>
+                <div className="t-small">ID knjige: {leasing.book.id}</div>
             </div>
+
+            {leasing.book.genre && (<div>Žanr: {leasing.book.genre}</div>)}
+
+            { leasing.returnDate ? (
+                <div>
+                    Vraćeno: {new Date(leasing.returnDate).toDateString()}
+                </div>
+                ) : (
+                <form className="ReturnBookForm" onSubmit={returnBook}>
+                    <div>
+                        <div>Posuđeno: {new Date(leasing.leaseDate).toDateString()}</div>
+                    </div>
+
+                    <input 
+                        className="ml-auto"
+                        type="text" 
+                        name="userId" 
+                        ref={userIdInputRef} 
+                        placeholder="Potvrdi članski broj" 
+                    />
+                    <div className="btn" onClick={returnBook}>Vrati knjigu</div>
+                </form>
+                )
+            }
         </div>
     );
 }

@@ -8,8 +8,11 @@ export default function UserCard(props) {
     }
 
     return (
-        <div className="UserCard" onClick={goToUser}>
-            <div>{props.id}, {props.name}, {props.email}</div>
-        </div>
+        <tr className="UserCard">
+            <td>{props.id}</td>
+            <td>{props.name}</td>
+            <td>{props.email}</td>
+            <td className="t-center"><div className="btn" onClick={goToUser}>Otvori</div></td>
+        </tr>
     )
 }

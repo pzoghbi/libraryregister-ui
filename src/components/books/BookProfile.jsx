@@ -33,21 +33,28 @@ const BookProfile = () => {
 
     return book && (
         <div className="BookProfile">
-            <h2>{book.title}</h2>
-            <div>Autor: {book.author.name}</div>
-            <div>Id knjige: {book.id}</div>
-            <div>Dostupno: { (book.isAvailable) ? "Da" : "Ne" }</div>
+            <div>
+                <h1>{book.title}</h1>
+                <i>{book.author.name}</i>
+            </div>
+            
+            {book.genre && (<div className="t-small">{book.genre}</div>)}
 
-            { 
-                !book.isAvailable &&
-                (
-                    <form ref={formRef} onSubmit={returnBook}>
-                        <label htmlFor="bookId">Vrati knjigu: </label>
-                        <input type="text" name="bookId" placeholder='Potvrdi broj knjige' />
-                        <div className="btn" onClick={returnBook}>Vrati</div>
-                    </form>
-                )
-            }
+            <div className="mt-1">
+                <div>ID: <b>{book.id}</b></div>
+                
+                <div className="d-flex align-center">
+                    <div>Dostupno: { (book.isAvailable) ? "Da" : "Ne" }</div>
+
+                    { !book.isAvailable && (
+                        <form className="ReturnBookForm ml-auto" ref={formRef} onSubmit={returnBook}>
+                            <label className="mr-1" htmlFor="bookId">Vrati knjigu:</label>
+                            <input type="text" name="bookId" placeholder='Potvrdi broj knjige' />
+                            <div className="btn" onClick={returnBook}>Vrati</div>
+                        </form>
+                    ) }
+                </div>
+            </div>
 
             {/* <div>Uredi</div>
             <div>Arhiviraj</div> */}

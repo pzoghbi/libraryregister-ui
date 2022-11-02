@@ -39,10 +39,10 @@ export default function UserCreate() {
 
     return (
         <form className="UsersCreate" ref={formRef}>
-            <h1>Novi clan</h1>
-            <input type="text" name="name" placeholder="Puno ime korisnika" />
-            <input type="email" name="email" placeholder="Email adresa" />
-            <div onClick={postUser}>Dodaj clana</div>
+            <h1>Novi član</h1>
+            <input type="text" name="name" placeholder="Puno ime korisnika" required />
+            <input type="email" name="email" placeholder="Email adresa" required />
+            <div className="btn" onClick={postUser}>Dodaj člana</div>
         </form>
     )
 }

@@ -10,11 +10,18 @@ export default function BookCard(props) {
 
     return (
         <div className="BookCard">
-            <div>{props.title}</div>
-            <div>{props.author.name}</div>
-            <div>{props.genre}</div>
-            <div>Dostupno: {props.isAvailable ? "Da" : "Ne"}</div>
-            <div className="btn" onClick={toBookProfile}>Pregled</div>
+            <div className="mb-1">
+                <h3>{props.title}</h3>
+                <i>{props.author.name}</i>
+                <div className="t-small">
+                    {props.genre && (<div>{props.genre}</div>)}
+                </div>
+            </div>
+
+            <div className="d-flex align-center">
+                <div>Dostupno: <b>{props.isAvailable ? "Da" : "Ne"}</b></div>
+                <div className="btn ml-auto" onClick={toBookProfile}>Pregled</div>
+            </div>
         </div>
     )
 }

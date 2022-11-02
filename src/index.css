@@ -4,41 +4,64 @@
     font-family: 'Verdana', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.BookCard {
-    background: lightgray;
-    padding: 1em;
-    margin: 0.5em;
-    border-radius: 10px;
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("./files/img/library-background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-.BooksCreate {
-    margin: 10px;
-    padding: 10px;
+.App {
+    padding: 3em;
+    width: 80%;
+    height: 80%;
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    box-shadow: 0 0 15px black;
+    overflow-y: scroll;
+    position: relative;
 }
 
-.BooksCreate input, 
-.BooksCreate select, 
-.BooksCreate .btn-submit{
-    border-radius: 5px;
-    margin: 0px 10px;
-    padding: 10px;
+.Content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3em;
 }
 
-.BooksCreate .btn-submit {
-    cursor: pointer;
-    background-color: pink;
-    display: inline-block;
+::-webkit-scrollbar {
+    width: .5rem;
+    border-radius: 1rem;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 1rem;
 }
 
 .btn {
-    padding: 4px;
-    margin: 2px;
+    padding: .5rem;
+    margin: 0 .5rem;
     background-color:aquamarine;
+    color: black;
     display: inline-block;
     cursor: pointer;
     box-shadow: 1px 1px 1px gray;
     position: relative;
     transition: all 0.1s linear;
+    border: none;
+    user-select: none;
+    font-size: .9rem;
 }
 
 .btn:hover {
@@ -54,22 +77,11 @@
     padding: 1em;
 }
 
-.App {
-    padding: 3em;
-    width: 80%;
-
-}
-
-#root {
-    display: flex;
-    justify-content: center;
-}
-
 .Navigation > div {
     padding: 1em;
     margin: 0 1em;
     cursor: pointer;
-    border-radius: 1em;
+    border-radius: .25em;
     transition: all .25s ease-in-out;
 }
 
@@ -82,7 +94,120 @@
     box-shadow: 0 0 2px black;
 }
 
-input {
+.AuthorCreate,
+.AuthorsIndex,
+.BookCreate,
+.BooksIndex,
+.UsersIndex, 
+.UsersCreate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.UserProfile,
+.BookProfile,
+.w-100 {
+    width:100%;
+}
+
+.UserProfile > div {
+    margin: 0.5rem 0;
+}
+
+.UsersCreate > *,
+.BookCreate > * {
+    margin: 1rem !important;
+}
+
+input::placeholder {
+    text-align: center;
+}
+
+input, input:focus {
+    padding: .25em;
+    margin: 1em 0;
+    
     height: 2em;
-    border: solid gray 1px;
+    border-radius: .25rem;
+
+    border: none;
+    outline: none;
+}
+
+input:focus {
+    outline: 3px rgb(0, 204, 255) solid;
+    box-shadow: 0 0 2rem rgb(0, 204, 255);
+}
+
+.t-small {
+    font-size: .75rem !important;
+}
+
+.t-center {
+    text-align: center !important;
+}
+
+.mb-1 { margin-bottom: 1em !important; }
+.mt-1 { margin-top: 1em !important; }
+.mt-2 { margin-top: 2em !important; }
+.ml-1 { margin-left: 1em !important; }
+.mr-1 { margin-right: 1em !important; }
+.ml-auto { margin-left: auto !important; }
+.d-flex { display: flex !important; }
+
+.justify-between { justify-content: space-between !important; }
+.align-center { align-items: center !important; }
+
+.ReturnBookForm, 
+.LeaseBookForm {
+    display: flex;
+    align-items: center;
+}
+
+.SearchResults {
+    width: 100%;
+    padding: 2em;
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0 1em;
+}
+
+tr.UserCard > td {
+    padding: .25em;
+    width: 25%;
+    vertical-align: middle;
+}
+
+tr.UserCard:hover {
+    background: white;
+    cursor: default;
+}
+
+.AuthorCard,
+.BookCard, 
+.UserLeasingCard {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 1rem;
+    color: gainsboro;
+    box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.5);
+}
+
+.UserLeasingCard,
+.BookCard,
+.AuthorCard {
+    transition: box-shadow .125s ease;
+}
+
+.UserLeasingCard:hover,
+.BookCard:hover,
+.AuthorCard:hover {
+    box-shadow: 0 0 .5rem black;
+}
+
+.AuthorCard {
 }

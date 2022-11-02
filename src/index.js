@@ -4,7 +4,7 @@ import './index.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import AuthorCreate from    './components/authors/AuthorCreate';
 import AuthorsIndex from    './components/authors/AuthorsIndex';
-import BooksCreate from     './components/books/BooksCreate';
+import BookCreate from     './components/books/BookCreate';
 import BooksIndex from      './components/books/BooksIndex';
 import UserCreate from      './components/users/UserCreate';
 import UsersIndex from      './components/users/UsersIndex';
@@ -33,7 +33,7 @@ root.render(
                 </Route>
                 <Route path="books">
                     <Route index element={<BooksIndex />} />
-                    <Route path="create" element={<BooksCreate />} />
+                    <Route path="create" element={<BookCreate />} />
                     <Route path=":id/read" element={<BookProfile />}/>
                     <Route path="edit" />
                 </Route>
