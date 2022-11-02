@@ -11,7 +11,7 @@ export default function App() {
             <div className="Navigation">
                 <div onClick={() => navigate("users")}
                     className={path === "users" ? "active" : ""}
-                    >Clanovi</div>
+                    >Članovi</div>
                 <div onClick={() => navigate("books")}
                     className={path === "books" ? "active" : ""}
                     >Knjige</div>
