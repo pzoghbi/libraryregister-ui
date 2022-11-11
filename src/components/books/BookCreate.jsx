@@ -4,12 +4,12 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router";
 
 export default function BookCreate() {
-    const [authors, setAuthors] = useState([])
+    let location = useLocation()
+    let selectedAuthor = location.state?.author
     let formRef = useRef()
     let inputRef = useRef()
-    let location = useLocation()
     let navigate = useNavigate()
-    let selectedAuthor = location.state?.author
+    const [authors, setAuthors] = useState([selectedAuthor ?? null])
 
     let authorsApiRoute = "https://localhost:7009/api/authors"
     let booksApiRoute = "https://localhost:7009/api/books"
@@ -48,6 +48,8 @@ export default function BookCreate() {
 
         axios.post(booksApiRoute, formData)
             .then(response => {
+                console.log("response", response)
+                
                 let book = response.data;
                 navigate(`${booksViewRoute}/${book.id}/read`)
             })

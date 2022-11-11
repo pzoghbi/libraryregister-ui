@@ -26,7 +26,7 @@ const UserProfile = () => {
 
     const getMembership = async (userId) => {
         // Get membership
-        await axios.get(`${membershipsApiRoute}/${userId}`)
+        await axios.get(`${membershipsApiRoute}/user/${userId}`)
             .then(response => {
                 setMembership(response.data)
             })
@@ -42,7 +42,6 @@ const UserProfile = () => {
                 bookId : inputBookId, 
                 userId : user.id 
             })
-        console.log("response", response)
 
         // Todo Tidy up w/ BE
         if (response.status === 201) {
@@ -83,11 +82,13 @@ const UserProfile = () => {
             }
             </div>
             
-            <form className="LeaseBookForm" onSubmit={leaseBook}>
-                <label className="ml-auto" htmlFor="bookId">Posudi knjigu: </label>
-                <input className="ml-1" type="text" name="bookId" placeholder="Unesi broj knjige" ref={inputRef} />
-                <div className="btn" onClick={leaseBook}>Posudi</div>
-            </form>
+            { membership && (
+                <form className="LeaseBookForm" onSubmit={leaseBook}>
+                    <label className="ml-auto" htmlFor="bookId">Posudi knjigu: </label>
+                    <input className="ml-1" type="text" name="bookId" placeholder="Unesi broj knjige" ref={inputRef} />
+                    <div className="btn" onClick={leaseBook}>Posudi</div>
+                </form>
+            )}
 
             <div className='UserLeasings'>
                 { user.leasings?.map((leasing, i) => 

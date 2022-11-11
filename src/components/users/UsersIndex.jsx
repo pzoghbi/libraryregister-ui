@@ -52,7 +52,7 @@ const UsersIndex = () => {
                     placeholder='Trazi člana po broju ili imenu' 
                     required 
                 />
-                <div className="btn" onClick={findUsers}>Trazi</div>
+                <div className="btn" onClick={findUsers}>Traži</div>
                 <div className="btn" onClick={toUserCreate}>Novi član</div>
             </form>
 
